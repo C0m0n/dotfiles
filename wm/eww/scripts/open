@@ -1,0 +1,11 @@
+#!/bin/bash
+
+calendar(){
+    grep "calendar" <<< "$(/opt/eww active-windows)" && /opt/eww close calendar || /opt/eww open calendar
+}
+
+case "$1" in
+    calendar)
+	calendar ;;
+esac
+

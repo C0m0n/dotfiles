@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo "$1 and $2"
+case $1 in
+    qtile)
+	qtile cmd-obj -o group "$2" -f toscreen
+	;;
+esac

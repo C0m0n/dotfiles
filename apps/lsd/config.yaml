@@ -1,0 +1,13 @@
+color:
+  when: auto
+  theme: default
+
+icons:
+  when: auto
+  theme: fancy
+  seperators: " "
+
+layout: tree
+
+recursion:
+  enabled: false
