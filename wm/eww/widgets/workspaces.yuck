@@ -1,0 +1,13 @@
+(defvar desktops "[]")
+
+(defwidget desktops []
+ (box :orientation "h" :halign "left" :class "desktops"
+  (for desk in "${desktops}"
+   (button :class 'workspace-button 
+    ${desk.name}  
+    ${desk.active=="true" ? "workspace-button-active": ''} 
+    ${desk.open_window=="true" ? "workspace-button-window": ''}
+    ${desk.screen=="0" ? "workspace-active-group" : ''}'
+    :onclick "./scripts/qtile qtile ${desk.name}"
+    "${desk.icon}"
+   ))))

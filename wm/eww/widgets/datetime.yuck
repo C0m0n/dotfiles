@@ -1,0 +1,51 @@
+(defvar time_rev false)
+
+(defpoll calendar_day :interval "1h" "date '+%d'")
+(defpoll calendar_year :interval "20h" "date '+%Y'")
+(defpoll clock_time :interval "1m" "date +\%I")
+(defpoll clock_minute :interval "1m" "date +\%M")
+(defpoll clock_date :interval "1h" "date '+%d/%m'" )
+
+(defwidget clock []
+    (eventbox 
+	:onhover "/opt/eww update time_rev=true" 
+	:onhoverlost "/opt/eww update time_rev=false"
+	(box 
+	  :class "module" 
+	  :orientation "h" 
+	  :space-evenly "false" 
+	  :spacing "1" 
+	  :width 20
+	   (label 
+	       :text clock_time 
+	       :class "clock_time_class")
+	   (label 
+	       :text ":" 
+	       :class "clock_time_sep" )
+	   (label 
+	       :text clock_minute 
+	       :class "clock_minute_class")
+	   (revealer 
+	       :transition "slideright" :reveal time_rev :duration "350ms"
+		(button 
+		    :class "clock_date_class" :onclick "$HOME/.config/eww/scripts/open calendar" clock_date)))))
+
+(defwidget cal []
+    (box 
+	:class "cal" 
+	:orientation "v"
+	(box 
+	    :class "cal-in"
+	    (calendar 
+		:class "cal"
+		:day calendar_day
+		:year calendar_year))))
+
+(defwindow calendar 
+    :geometry (geometry 
+	:x "-20px" 
+	:y "7%" 
+	:anchor "top right" 
+	:width "300px" 
+	:height "60px")
+	    (cal))

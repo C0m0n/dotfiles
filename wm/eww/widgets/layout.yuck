@@ -1,0 +1,23 @@
+(defvar layout_rev false)
+
+(defwidget layout [screen]
+    (eventbox
+	:onhover "/opt/eww update layout_rev=true"
+	:onhoverlost "/opt/eww update layout_rev=false"
+	(box
+	    :orientation "h" 
+	    :halign "left" 
+	    :class "layout-picker" 
+	    :space-evenly "false" 
+	    (label 
+		:text '${replace(jq(desktops,'.[] | select(.active == true) | select(.screen == ${screen}) | .layout'),'"',"")}'
+		:class "clock_time_class")
+		(revealer 	
+		    :transition "slideright" 	
+		    :reveal layout_rev 
+		    :duration "350ms"
+		    (box 	
+			:orientation "h"
+			(for layout in {jq(desktops,'.[] | select(.active == true) | select(.screen == ${screen}) | .layouts')}
+			(button "${layout.icon}")))))))
+

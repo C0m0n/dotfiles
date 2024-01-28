@@ -1,0 +1,29 @@
+
+(defvar vol_rev false)
+
+(defpoll volume_level :interval "1s" "pactl get-sink-volume 0 | cut -d' ' -f6 | tr -d '%'")
+
+ (defwidget volume []
+    (eventbox 
+	:onhover "/opt/eww update vol_rev=true"
+	:onhoverlost "/opt/eww update vol_rev=false"
+	(box 
+	    :class "cal"
+	    :space-evenly false
+	    :orientation "h"
+	    :width 30
+	    :halign "end"
+	    :margin 30
+	    (label :text "" :halign "center")
+	    (revealer 
+		:transition "slideleft"
+		:reveal vol_rev
+		:duration "350ms"
+		(scale
+		    :flipped false
+		    :width 150
+		    :value volume_level
+		    :orientation "h"
+		    :onchange "pactl set-sink-volume 0 {}%"
+		    :max 100 
+		    :min 0)))))

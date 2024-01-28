@@ -208,7 +208,7 @@ def start_once():
 @hook.subscribe.focus_change
 async def _(*args):
     import json
-    from pathlib import Path
+    eww_bin = '/opt/eww'
 
     icons = {
         'main': '󰕮',
@@ -251,6 +251,4 @@ async def _(*args):
 
             state.append(dict(group))
 
-    state_file = Path("/tmp/qtile.state")
-    with state_file.open('w') as f:
-        f.write(json.dumps(state))
+    subprocess.run(f"{eww_bin} update desktops='{json.dumps(state)}'", shell=True)

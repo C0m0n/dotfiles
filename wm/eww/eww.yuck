@@ -1,113 +1,15 @@
+(include "./widgets/workspaces.yuck")
+(include "./widgets/layout.yuck")
+(include "./widgets/datetime.yuck")
+(include "./widgets/volume.yuck")
 (defvar greeter_rev false)
-(defvar time_rev false)
-(defvar layout_rev false)
-(defvar vol_rev false)
 
-(defpoll volume_level :interval "1s" "pactl get-sink-volume 0 | cut -d' ' -f6 | tr -d '%'")
-(defpoll calendar_day :interval "1h" "date '+%d'")
-(defpoll calendar_year :interval "20h" "date '+%Y'")
-(defpoll clock_time :interval "1m" "date +\%I")
-(defpoll clock_minute :interval "1m" "date +\%M")
-(defpoll clock_date :interval "1h" "date '+%d/%m'" )
-
-(defpoll desktops :interval ".1s" "cat /tmp/qtile.state")
-
-
-(defwidget desktops []
- (box :orientation "h" :halign "left" :class "desktops"
-  (for desk in "${desktops}"
-   (button :class 'workspace-button 
-    ${desk.name}  
-    ${desk.active=="true" ? "workspace-button-active": ''} 
-    ${desk.open_window=="true" ? "workspace-button-window": ''}
-    ${desk.screen=="0" ? "workspace-active-group" : ''}'
-    :onclick "./scripts/qtile qtile ${desk.name}"
-    "${desk.icon}"
-   ))))
-
-(defwidget layout [screen]
-    (eventbox
-	:onhover "/opt/eww update layout_rev=true"
-	:onhoverlost "/opt/eww update layout_rev=false"
-	(box
-	    :orientation "h" 
-	    :halign "left" 
-	    :class "layout-picker" 
-	    :space-evenly "false" 
-	    (label 
-		:text '${replace(jq(desktops,'.[] | select(.active == true) | select(.screen == ${screen}) | .layout'),'"',"")}'
-		:class "clock_time_class")
-		(revealer 	
-		    :transition "slideright" 	
-		    :reveal layout_rev 
-		    :duration "350ms"
-		    (box 	
-			:orientation "h"
-			(for layout in {jq(desktops,'.[] | select(.active == true) | select(.screen == ${screen}) | .layouts')}
-			(button "${layout.icon}")))))))
-
-(defwidget clock []
-(eventbox 
-    :onhover "/opt/eww update time_rev=true" 
-    :onhoverlost "/opt/eww update time_rev=false"
-    (box 
-      :class "module" 
-      :orientation "h" 
-      :space-evenly "false" 
-      :spacing "1" 
-      :width 20
-       (label 
-	   :text clock_time 
-	   :class "clock_time_class")
-       (label 
-	   :text ":" 
-	   :class "clock_time_sep" )
-       (label 
-	   :text clock_minute 
-	   :class "clock_minute_class")
-       (revealer 
-	   :transition "slideright" :reveal time_rev :duration "350ms"
-	    (button 
-		:class "clock_date_class" :onclick "$HOME/.config/eww/scripts/open calendar" clock_date)))))
-
-(defwidget cal []
- (box :class "cal" :orientation "v"
-  (box :class "cal-in"
-   (calendar :class "cal"
-    :day calendar_day
-    :year calendar_year))))
-
-(defwindow calendar 
- :geometry (geometry :x "-20px" :y "7%" :anchor "top right" :width "300px" :height "60px")
- (cal))
-
- (defwidget volume []
-    (eventbox 
-	:onhover "/opt/eww update vol_rev=true"
-	:onhoverlost "/opt/eww update vol_rev=false"
-	(box 
-	    :class "cal"
-	    :space-evenly false
-	    :orientation "h"
-	    :width 30
-	    :halign "end"
-	    :margin 30
-	    (label :text "" :halign "center")
-	    (revealer 
-		:transition "slideleft"
-		:reveal vol_rev
-		:duration "350ms"
-		(scale
-		    :flipped false
-		    :width 150
-		    :value volume_level
-		    :orientation "h"
-		    :onchange "pactl set-sink-volume 0 {}%"
-		    :max 100 
-		    :min 0)))))
 
 (defwidget right []
-(box :orientation "h" :halign "end" :class "right_modules"
+(box 
+    :orientation "h" 
+    :halign "end" 
+    :class "right_modules"
     :spacing 30 
     :space-evenly false
 (volume)
@@ -120,7 +22,7 @@
 ))
 
 (defwidget center []
-(box :orientation "h" :halign "start" :class "center_modules" :space-evenly false
+(box :orientation "h" :halign "center" :class "center_modules" :space-evenly false
 (layout :screen 0)
 (desktops)
 (volume)
@@ -157,7 +59,7 @@
  :monitor 0
  :geometry (geometry :x "0%"
      :y "10px"
-     :width "95%"
+     :width "35%"
      :height "30px"
      :anchor "top center")
  :stacking "fg"
