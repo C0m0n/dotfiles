@@ -89,8 +89,10 @@
 	    :class "cal"
 	    :space-evenly false
 	    :orientation "h"
-	    :width 150
+	    :width 30
 	    :halign "end"
+	    :margin 30
+	    (label :text "" :halign "center")
 	    (revealer 
 		:transition "slideleft"
 		:reveal vol_rev
@@ -106,6 +108,8 @@
 
 (defwidget right []
 (box :orientation "h" :halign "end" :class "right_modules"
+    :spacing 30 
+    :space-evenly false
 (volume)
 (clock)
 ))
@@ -116,8 +120,10 @@
 ))
 
 (defwidget center []
-(box :orientation "h" :halign "start" :class "center_modules"
+(box :orientation "h" :halign "start" :class "center_modules" :space-evenly false
+(layout :screen 0)
 (desktops)
+(volume)
 (clock)
 ))
 
@@ -151,14 +157,13 @@
  :monitor 0
  :geometry (geometry :x "0%"
      :y "10px"
-     :width "23%"
+     :width "95%"
      :height "30px"
      :anchor "top center")
  :stacking "fg"
  :windowtype "dock"
  :wm-ignore false
-(box :orientation "h" :halign "start" :class "center_modules" :space-evenly false
-(layout :screen 0)
-(desktops)
-))
+:reserve (struts :distance "40px" :side "top")
+ (center)
+)
  
