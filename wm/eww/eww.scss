@@ -1,10 +1,11 @@
 @use "styles/calendar.scss";
 @use "styles/datetime.scss";
+@import "themes/theme";
 window{
-    background-color: #453F3C;
+    background-color: $c-bg-0;
 }
 .bar_class{
-    background-color: #0f0f17;
+    background-color: $c-bg-0;
 }
 /*
 .module{

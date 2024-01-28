@@ -1,16 +1,18 @@
+@import '../themes/theme';
+
 .clock_date_class {
     font-size: 20;
     margin: 0px 20px 0px -1px;
-    color: #000000;
+    color: $c-yellow-1;
     border-style: none;
-}
-.clock_minute_class {
-    font-size: 20;
-    margin: 0px 20px 0px 3px;
-    color: #000000;
 }
 .clock_time_class {
     font-size: 18;
     margin: 0px 3px 0px 3px;
     color: #F75C03;
+}
+.datetime{
+    background: $c-bg-4;
+    border-radius: 10px;
+
 }

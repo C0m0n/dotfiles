@@ -11,7 +11,7 @@
 	:onhover "/opt/eww update time_rev=true" 
 	:onhoverlost "/opt/eww update time_rev=false"
 	(box 
-	  :class "module" 
+	  :class "datetime" 
 	  :orientation "h" 
 	  :space-evenly "false" 
 	  :spacing "1" 
@@ -24,7 +24,7 @@
 	       :class "clock_time_sep" )
 	   (label 
 	       :text clock_minute 
-	       :class "clock_minute_class")
+	       :class "clock_time_class")
 	   (revealer 
 	       :transition "slideright" :reveal time_rev :duration "350ms"
 		(button 
