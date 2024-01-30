@@ -2,6 +2,7 @@
 (include "./widgets/layout.yuck")
 (include "./widgets/datetime.yuck")
 (include "./widgets/volume.yuck")
+(include "./widgets/poopoo.yuck")
 (defvar greeter_rev false)
 
 
@@ -56,7 +57,7 @@
 (left))
 
 (defwindow center_bar
- :monitor 0
+ :monitor 0 
  :geometry (geometry :x "0%"
      :y "10px"
      :width "35%"

@@ -3,7 +3,7 @@
 
 (defpoll volume_level :interval "1s" "pactl get-sink-volume 0 | cut -d' ' -f6 | tr -d '%'")
 
- (defwidget volume []
+ (defwidget volume [?trans]
     (eventbox 
 	:onhover "/opt/eww update vol_rev=true"
 	:onhoverlost "/opt/eww update vol_rev=false"
@@ -18,7 +18,7 @@
 	    (revealer 
 		:transition "slideleft"
 		:reveal vol_rev
-		:duration "350ms"
+		:duration "${trans == '' ? '350ms' : '${trans}' }"
 		(scale
 		    :flipped false
 		    :width 150

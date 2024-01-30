@@ -84,7 +84,6 @@ def init_keybinds():
    
         # Screen navigation
         Key([super, shift], '1', lazy.group['main'].toscreen()),
-        Key([super, shift], '2', lazy.group['code'].toscreen()),
         Key([super, shift], '3', lazy.group['www'].toscreen()),
 
         # Layout control
@@ -118,7 +117,6 @@ def init_keybinds():
         Key([super, ctrl], 'l', lazy.layout.grow_right()),
 
         Key(hyper, '1', lazy.window.togroup('main')),
-        Key(hyper, '2', lazy.window.togroup('code')),      
         Key(hyper, '3', lazy.window.togroup('www')),
         #Key([hyper], '4', lazy.window.togroup(' 4 ')),
 

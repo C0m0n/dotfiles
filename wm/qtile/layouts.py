@@ -58,7 +58,7 @@ tiny_centered_kwargs = { **center_window(0, 0), **default_scratchpad_kwargs }
 
 def init_groups(): 
     default_layout = 'columns'
-    group_name = ['main', 'code', 'www', 'vm', 'games']
+    group_name = ['main', 'www', 'vm', 'games', 'discord', 'btop', 'youtube']
     #group_name = ['dash', 'main', 'alt', 'vm', 'windows']
     
     return [ 
@@ -67,6 +67,8 @@ def init_groups():
         Group(group_name[2], layout=default_layout),
         Group(group_name[3], layout=default_layout),
         Group(group_name[4], layout=default_layout),
+        Group(group_name[5], layout=default_layout),
+        Group(group_name[6], layout=default_layout),
 
         ScratchPad('terminal', [
             DropDown('terminal', 'kitty --title scratchpad', **large_centered_kwargs),

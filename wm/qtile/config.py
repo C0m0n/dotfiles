@@ -209,13 +209,18 @@ def start_once():
 async def _(*args):
     import json
     eww_bin = '/opt/eww'
+    #Main monitor: Main, VM, WWW, Games
+    #Top monitor: Discord, Youtube,
+    #Side monitor: Btop, Discord
 
     icons = {
         'main': '󰕮',
-        'code': '',
-        'www': '',
-        'vm': '',
+        'www': '',
+        'vm': '󰢔',
         'games': '',
+        'discord': '󰙯',
+        'btop': '',
+        'youtube': '󰗃',
         'columns': '',
         'floating': '',
         '0': '󰎣',
