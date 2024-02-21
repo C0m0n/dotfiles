@@ -7,66 +7,59 @@
 
 
 (defwidget right []
-(box 
-    :orientation "h" 
-    :halign "end" 
-    :class "right_modules"
-    :spacing 30 
-    :space-evenly false
-(volume)
-(clock)
-))
+    (box 
+	:orientation "h" 
+	:halign "end" 
+	:class "right_modules"
+	:spacing 30 
+	:space-evenly false
+	(volume)
+	(clock)))
 
 (defwidget left []
-(box :orientation "h" :halign "start" :class "left_modules"
-(desktops)
-))
+    (box :orientation "h" :halign "start" :class "left_modules"
+    ))
 
 (defwidget center []
-(box :orientation "h" :halign "center" :class "center_modules" :space-evenly false
-(layout :screen 0)
-(desktops)
-(volume)
-(clock)
-))
+    (box :orientation "h" :halign "left" :class "center_modules" :space-evenly false
+	(layout :screen 0)
+	(desktops :shapes "pill")))
 
 (defwindow right_bar
     :monitor 0
     :geometry (geometry :x "0%"
 	:y "10px"
-	:width "23%"
-	:height "30px"
+	:width "10%"
+	:height "40px"
 	:anchor "top right")
     :stacking "fg"
-    :reserve (struts :distance "40px" :side "top")
     :windowtype "dock"
     :wm-ignore false
-(right))
+    (right))
 
 
 (defwindow left_bar
     :monitor 0
     :geometry (geometry :x "0%"
 	:y "10px"
-	:width "23%"
-	:height "30px"
+	:width "10%"
+	:height "40px"
 	:anchor "top left")
     :stacking "fg"
     :windowtype "dock"
     :wm-ignore false
-(left))
+    (left))
 
 (defwindow center_bar
- :monitor 0 
- :geometry (geometry :x "0%"
-     :y "10px"
-     :width "35%"
-     :height "30px"
-     :anchor "top center")
- :stacking "fg"
- :windowtype "dock"
- :wm-ignore false
-:reserve (struts :distance "40px" :side "top")
- (center)
-)
+    :monitor 0 
+    :geometry (geometry :x "0%"
+	:y "10px"
+	:width "35%"
+	:height "30px"
+	:anchor "top center")
+    :stacking "fg"
+    :windowtype "dock"
+    :wm-ignore false
+    :reserve (struts :distance "40px" :side "top")
+    (center))
  

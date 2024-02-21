@@ -19,5 +19,5 @@
 		    (box 	
 			:orientation "h"
 			(for layout in {jq(desktops,'.[] | select(.active == true) | select(.screen == ${screen}) | .layouts')}
-			(button "${layout.icon}")))))))
+			(button :class "workspace-button pill" "${layout.icon}")))))))
 

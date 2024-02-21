@@ -1,6 +1,7 @@
 @use "styles/calendar.scss";
 @use "styles/datetime.scss";
 @use "styles/workspaces.scss";
+@use "styles/shapes.scss";
 @import "themes/theme";
 window{
     background-color: $c-bg-0;

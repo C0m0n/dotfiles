@@ -1,0 +1,20 @@
+@import '../themes/theme';
+
+.pill{
+   border-radius: 10px; 
+}
+
+.border-solid{
+    border: solid; 
+    border-width: 9px;
+    border-color: $c-fg-1;
+}
+
+.border-dashed{
+    border: dashed;
+}
+
+.rectangle{
+    border-bottom: 20px;
+    border-top: 20px;
+}

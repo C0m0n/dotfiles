@@ -83,8 +83,13 @@ def init_keybinds():
         Key([super], 's', lazy.spawn(file_manager)), 
    
         # Screen navigation
-        Key([super, shift], '1', lazy.group['main'].toscreen()),
-        Key([super, shift], '3', lazy.group['www'].toscreen()),
+        Key([super], '1', lazy.group['main'].toscreen()),
+        Key([super], '2', lazy.group['www'].toscreen()),
+        Key([super], '3', lazy.group['vm'].toscreen()),
+        Key([super], '4', lazy.group['games'].toscreen()),
+        Key([super], '6', lazy.group['discord'].toscreen()),
+        Key([super], '7', lazy.group['btop'].toscreen()),
+        Key([super], '8', lazy.group['youtube'].toscreen()),
 
         # Layout control
         Key(hyper, space, lazy.next_layout()),
@@ -117,8 +122,12 @@ def init_keybinds():
         Key([super, ctrl], 'l', lazy.layout.grow_right()),
 
         Key(hyper, '1', lazy.window.togroup('main')),
-        Key(hyper, '3', lazy.window.togroup('www')),
-        #Key([hyper], '4', lazy.window.togroup(' 4 ')),
+        Key(hyper, '2', lazy.window.togroup('www')),
+        Key(hyper, '3', lazy.window.togroup('vm')),
+        Key(hyper, '4', lazy.window.togroup('games')),
+        Key(hyper, '6', lazy.window.togroup('discord')),
+        Key(hyper, '7', lazy.window.togroup('btop')),
+        Key(hyper, '8', lazy.window.togroup('youtube')),
 
 
         # Multimedia

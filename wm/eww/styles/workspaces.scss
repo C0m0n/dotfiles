@@ -1,11 +1,12 @@
-
+@import '../themes/theme';
 .workspace-button{
-    all: unset;
+    all:unset;
     font-size: 18px;
     margin-right: 15px;
     margin-left: 15px;
     color: #519872;
     padding: 10px;
+    background-color: $c-bg-2;
 }
 
 
@@ -19,4 +20,8 @@
 
 .workspace-active-group {
     color: #F79C03;
+}
+
+.layout-picker{
+    min-width: 40px;
 }

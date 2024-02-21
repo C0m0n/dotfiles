@@ -257,3 +257,5 @@ async def _(*args):
             state.append(dict(group))
 
     subprocess.run(f"{eww_bin} update desktops='{json.dumps(state)}'", shell=True)
+    subprocess.run(f"/opt/eww --config ~/.config/rancid update wm-state='{json.dumps(state)}'", shell=True)
+

@@ -14,7 +14,6 @@
 	    :width 30
 	    :halign "end"
 	    :margin 30
-	    (label :text "" :halign "center")
 	    (revealer 
 		:transition "slideleft"
 		:reveal vol_rev
@@ -26,4 +25,5 @@
 		    :orientation "h"
 		    :onchange "pactl set-sink-volume 0 {}%"
 		    :max 100 
-		    :min 0)))))
+		    :min 0))
+	    (label :text "" :halign "center"))))

@@ -1,6 +1,6 @@
 (defvar desktops "[]")
 
-(defwidget desktops []
+(defwidget desktops [?shapes]
  (box 
     :orientation "h" 
     :halign "left" 
@@ -10,7 +10,8 @@
    'workspace-button 
     ${desk.name}  
     ${desk.active=="true" ? "workspace-button-active": ''} 
-    ${desk.open_window=="true" ? "workspace-button-window": ''}
-    ${desk.screen=="0" ? "workspace-active-group" : ''}'
+    ${desk.open_window=="true" ? "workspace-button-window": ''} 
+    ${desk.screen=="0" ? "workspace-active-group" : ''}
+    ${shapes}'
     :onclick "./scripts/qtile qtile ${desk.name}"
     "${desk.icon}"))))
