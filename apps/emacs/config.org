@@ -9,6 +9,7 @@
   - [[#elpaca-package-manager][Elpaca Package Manager]]
   - [[#load-evil-mode][Load Evil Mode]]
   - [[#general-keybindings][General Keybindings]]
+- [[#reload-user-init-file][RELOAD USER INIT FILE]]
 - [[#fonts][FONTS]]
 - [[#graphical-user-interface-tweaks][GRAPHICAL USER INTERFACE TWEAKS]]
   - [[#disable-menubar-toolbars-and-scrollbars][Disable Menubar, Toolbars and Scrollbars]]
@@ -16,6 +17,8 @@
 - [[#org-mode][ORG MODE]]
   - [[#enabling-table-of-contents][Enabling Table of Contents]]
   - [[#enabling-org-bullets][Enabling Org Bullets]]
+  - [[#diable-electric-indent][Diable Electric Indent]]
+  - [[#enabling-org-tempo][Enabling org tempo]]
 - [[#which-key][WHICH-KEY]]
 
 * IMPORTANT PROGRAMS TO LOAD FIRST
@@ -82,7 +85,7 @@
     :config
     (setq evil-collection-mode-list '(dashboard dired ibuffer))
     (evil-collection-init))
-  (use-package evil-tutor)
+ (use-package evil-tutor)
 
 (use-package emacs :ensure nil :config (setq ring-bell-function #'ignore))
 
@@ -106,6 +109,11 @@
       :global-prefix "M-SPC") ;; access leader in insert mode
 
     (dt/leader-keys
+        "f f" '(find-file :wk "Find file")
+        "f c" '((lambda () (interactive) (find-file "~/.config/emacs/config.org")) :wk "Edit emacs config")
+        "TAB TAB" '(comment-line :wk "Comment line"))
+
+    (dt/leader-keys
         "b" '(:ignore t :wk "buffer")
         "b b" '(switch-to-buffer :wk "Switch buffer")
         "b i" '(ibuffer :wk "Ibuffer")
@@ -120,11 +128,24 @@
         "e d" '(eval-defun :wk "Evaluate defun containing or after point")
         "e e" '(eval-expression :wk "Evaluate elsip expression")
         "e l" '(eval-last-sexp :wk "Evaluate elisp expression before point")
-        "e r" '(eval-region :wk "Evaluate elisp in region")
+        "e r" '(eval-region :wk "Evaluate elisp in region"))
+
+  (dt/leader-keys
+  "h" '(:ignore t :wk "Help")
+  "h f" '(describe-function :wk "Describe function")
+  "h v" '(describe-variable :wk "Describe variable")
+  "h r r" '((lambda () (interactive) (load-file "~/.config/emacs/init.el")) :wk "Reload config"))
+
+  (dt/leader-keys
+  "t" '(:ignore t :wk "Toggle")
+  "t l" '(display-line-numbers-mode :wk "Toggle line numbers")
+  "t t" '(visual-line-mode :wk "Toggle truncated lines"))
 
   )
 
 #+end_src
+
+* RELOAD USER INIT FILE
 
 
 * FONTS
@@ -181,18 +202,30 @@ Let's make GNU Emacs look a little better.
 * ORG MODE
 ** Enabling Table of Contents
 #+begin_src emacs-lisp
-  (use-package toc-org
-      :commands toc-org-enable
-      :init (add-hook 'org-mode-hook 'toc-org-enable))
+(use-package toc-org
+    :commands toc-org-enable
+    :init (add-hook 'org-mode-hook 'toc-org-enable))
 #+end_src
 
 ** Enabling Org Bullets
 Org-bullets gives us attractive bullets rather than asterisks.
 
 #+begin_src emacs-lisp
-  (add-hook 'org-mode-hook 'org-indent-mode)
-  (use-package org-bullets)
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(add-hook 'org-mode-hook 'org-indent-mode)
+(use-package org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+#+end_src
+
+** Diable Electric Indent
+Change the org mode src block to no indent weird.
+#+begin_src emacs-lisp
+(electric-indent-mode -1)
+#+end_src
+
+** Enabling org tempo
+Enable org tempo which allows faster src code blocks.
+#+begin_src emacs-lisp
+(require 'org-tempo)
 #+end_src
 
 * WHICH-KEY

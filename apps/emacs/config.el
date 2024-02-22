@@ -55,9 +55,9 @@
     (evil-collection-init))
   (use-package evil-tutor)
 
-(use-package emacs :elpaca nil :config (setq ring-bell-function #'ignore))
+(use-package emacs :ensure nil :config (setq ring-bell-function #'ignore))
 
-(elpaca nil (message "deferred"))
+;;(elpaca nil (message "deferred"))
 
 (use-package general
   :config
@@ -71,12 +71,21 @@
     :global-prefix "M-SPC") ;; access leader in insert mode
 
   (dt/leader-keys
-    "b" '(:ignore t :wk "buffer")
-    "bb" '(switch-to-buffer :wk "Switch buffer")
-    "bk" '(kill-this-buffer :wk "Kill this buffer")
-    "bn" '(next-buffer :wk "Next buffer")
-    "bp" '(previous-buffer :wk "Previous buffer")
-    "br" '(revert-buffer :wk "Reload buffer"))
+      "b" '(:ignore t :wk "buffer")
+      "b b" '(switch-to-buffer :wk "Switch buffer")
+      "b i" '(ibuffer :wk "Ibuffer")
+      "b k" '(kill-this-buffer :wk "Kill this buffer")
+      "b n" '(next-buffer :wk "Next buffer")
+      "b p" '(previous-buffer :wk "Previous buffer")
+      "b r" '(revert-buffer :wk "Reload buffer"))
+
+  (dt/leader-keys
+      "e" '(:ignore :wk "Evaluate")
+      "e b" '(eval-buffer :wk "Evaluate elsip in buffer")
+      "e d" '(eval-defun :wk "Evaluate defun containing or after point")
+      "e e" '(eval-expression :wk "Evaluate elsip expression")
+      "e l" '(eval-last-sexp :wk "Evaluate elisp expression before point")
+      "e r" '(eval-region :wk "Evaluate elisp in region")
 
 )
 
